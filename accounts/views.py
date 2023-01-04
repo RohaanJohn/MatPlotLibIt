@@ -22,6 +22,7 @@ def ask(request):
                 
               if request.method== 'POST':
                     openai.api_key = "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"
+                    question = request.POST['question']
                     prompt = (f"Question: {question}\n")
                     response = openai.Completion.create(
                     engine="text-davinci-002",
