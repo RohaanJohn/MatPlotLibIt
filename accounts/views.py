@@ -33,6 +33,7 @@ def ask(request):
                     temperature=0.5,
                     )
                     text = response['choices'][0]['text']
+                    text = text.replace("\n", "")
                     return Response({"output":text})
                        
               else:
