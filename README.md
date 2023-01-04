@@ -1,1 +1,1 @@
-https://emailverificationapi.up.railway.app/accounts/verify
+https://chatgptapi.up.railway.app/accounts/ask
