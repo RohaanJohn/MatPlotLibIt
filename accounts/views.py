@@ -14,31 +14,28 @@ from io import BytesIO
 from pathlib import Path
 from PIL import Image, ImageOps
 from datetime import datetime
-import re
-
+import openai
 
 # Create your views here.
 @api_view(['GET', 'POST'])
-def verify(request):
+def ask(request):
                 
               if request.method== 'POST':
-                    email = request.POST['email']
-                    regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
- 
-                    # Define a function for
-                    # for validating an Email
-
- 
-                    # pass the regular expression
-                    # and the string into the fullmatch() method
-                    if(re.fullmatch(regex, email)):
-                        return Response({"output":"Valid"})
- 
-                    else:
-                        return Response({"output":"Invalid"})
+                    openai.api_key = "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"
+                    prompt = (f"Question: {question}\n")
+                    response = openai.Completion.create(
+                    engine="text-davinci-002",
+                    prompt=prompt,
+                    max_tokens=2000,
+                    n=1,
+                    stop=None,
+                    temperature=0.5,
+                    )
+                    text = response['choices'][0]['text']
+                    return Response({"output":text})
                        
               else:
-                return render(request,'emailverification.html')
+                return render(request,'dhwani.html')
    # [(0 is Happy), (1 is Angry), (2 is Sad), (3 is Fear)]
 
 
