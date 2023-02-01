@@ -21,7 +21,7 @@ import openai
 def ask(request):
                 
               if request.method== 'POST':
-                    openai.api_key = "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"
+                    openai.api_key = "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"
                     question = request.POST['question']
                     prompt = (f"Question: {question}\n")
                     response = openai.Completion.create(
