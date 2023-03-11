@@ -15,31 +15,28 @@ from pathlib import Path
 from PIL import Image, ImageOps
 from datetime import datetime
 import openai
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Create your views here.
 @api_view(['GET', 'POST'])
-def ask(request):
-                
-              if request.method== 'POST':
-                    openai.api_key = "<your-api-key>"
-                    question = request.POST['question']
-                    prompt = (f"Question: {question}\n")
-                    response = openai.Completion.create(
-                    engine="text-davinci-002",
-                    prompt=prompt,
-                    max_tokens=2000,
-                    n=1,
-                    stop=None,
-                    temperature=0.5,
-                    )
-                    text = response['choices'][0]['text']
-                    text = text.replace("\n", "")
-                    return Response({"output":text})
-                       
-              else:
-                return render(request,'dhwani.html')
-   # [(0 is Happy), (1 is Angry), (2 is Sad), (3 is Fear)]
+def my_view(request):
+    # Generate data and create bar chart
+    categories = ['A', 'B', 'C', 'D', 'E']
+    counts = np.random.randint(1, 20, size=len(categories))
+    plt.bar(categories, counts)
+    plt.title('Bar chart of random data')
+    plt.xlabel('Category')
+    plt.ylabel('Count')
+    
+    # Save the chart to static/images
+    image_name = 'bar_chart.png'
+    image_path = os.path.join(settings.STATIC_ROOT, 'images', image_name)
+    plt.savefig(image_path)
 
+    # Render the template with the image URL
+    context = {'image_url': f"{settings.STATIC_URL}images/{image_name}"}
+    return render(request, 'my_template.html', context)
 
                       
                 
