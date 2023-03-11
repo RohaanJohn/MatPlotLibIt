@@ -36,7 +36,7 @@ def matplotlibit(request):
     
     # Save the chart as an image file
     image_name = f'Image{str(datetime.now())}.jpg'
-    image_path = os.path.join(settings.STATIC_ROOT, 'images', image_name)
+    image_path = os.path.join(telusko.settings.STATIC_ROOT, 'images', image_name)
     plt.savefig(image_path)
     
     # Open the image file, encode it as base64, and create a new file in a GitHub repo
