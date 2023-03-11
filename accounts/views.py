@@ -17,6 +17,7 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 import numpy as np
 from github import Github
+import telusko
 from telusko.settings import STATIC_ROOT
 
 BASE_DIR = Path(__file__).resolve().parent.parent
