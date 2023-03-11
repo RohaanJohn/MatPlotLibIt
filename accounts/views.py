@@ -16,8 +16,7 @@ from PIL import Image, ImageOps
 from datetime import datetime
 import matplotlib.pyplot as plt
 import numpy as np
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'telusko.settings')
-from django.conf import settings
+from github import Github
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 g = Github("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")
