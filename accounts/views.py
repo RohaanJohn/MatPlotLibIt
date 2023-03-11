@@ -14,7 +14,6 @@ from io import BytesIO
 from pathlib import Path
 from PIL import Image, ImageOps
 from datetime import datetime
-import openai
 import matplotlib.pyplot as plt
 import numpy as np
 
