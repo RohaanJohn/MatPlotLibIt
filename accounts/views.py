@@ -16,7 +16,8 @@ from PIL import Image, ImageOps
 from datetime import datetime
 import matplotlib.pyplot as plt
 import numpy as np
-
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'telusko.settings')
+from django.conf import settings
 # Create your views here.
 @api_view(['GET', 'POST'])
 def my_view(request):
