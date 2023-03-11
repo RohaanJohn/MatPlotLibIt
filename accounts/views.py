@@ -52,7 +52,8 @@ def matplotlibit(request):
         repo.create_file(pic_url, "commit", base64.b64decode(string))
 
     # Render the template with the image URL
-    context = {'image_url': f"{pic_url}"}
+    #context = {'image_url': f"{pic_url}"}
+    context = {'image_url': f"{image_path}"}
     return render(request, 'my_template.html', context)
 
                       
