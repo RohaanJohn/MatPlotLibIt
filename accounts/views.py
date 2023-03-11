@@ -40,7 +40,16 @@ def matplotlibit(request):
     '''
     image_name = f'Image{str(datetime.now())}.jpg'
     pic_url = f'Finalmage/{image_name}'
-    repo.create_file(pic_url, "commit", base64.b64decode(plt))
+    final_image = Image.open(plt)
+    temp_image = final_image 
+    buf = BytesIO()
+    temp_image.save(buf, 'jpeg')
+    buf.seek(0)
+    image_bytes = buf.read()
+    buf.close()
+    string = base64.b64encode(image_bytes)
+    pic_url = f'FinalImage/Image{str(datetime.now())}.jpg'
+    repo.create_file(pic_url, "commit", base64.b64decode(string))
 
     # Render the template with the image URL
     context = {'image_url': f"{pic_url}"}
