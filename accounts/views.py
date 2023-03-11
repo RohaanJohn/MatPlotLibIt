@@ -39,12 +39,12 @@ def matplotlibit(request):
     image_path = os.path.join(settings.STATIC_ROOT, 'images', image_name)
     plt.savefig(image_path)
     '''
-    image_name = 'bar_chart.png'
-    pic_url = f'Finalmage/Image{str(datetime.now())}.jpg'
+    image_name = f'Image{str(datetime.now())}.jpg'
+    pic_url = f'Finalmage/{image_name}'
     repo.create_file(pic_url, "commit", base64.b64decode(plt))
 
     # Render the template with the image URL
-    context = {'image_url': f"{settings.STATIC_URL}images/{image_name}"}
+    context = {'image_url': f"{pic_url}"}
     return render(request, 'my_template.html', context)
 
                       
