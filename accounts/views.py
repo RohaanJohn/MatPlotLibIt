@@ -20,7 +20,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'telusko.settings')
 from django.conf import settings
 # Create your views here.
 @api_view(['GET', 'POST'])
-def my_view(request):
+def matplotlibit(request):
     # Generate data and create bar chart
     categories = ['A', 'B', 'C', 'D', 'E']
     counts = np.random.randint(1, 20, size=len(categories))
