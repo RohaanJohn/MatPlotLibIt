@@ -53,7 +53,7 @@ def matplotlibit(request):
 
     # Render the template with the image URL
     #context = {'image_url': f"{pic_url}"}
-    context = {'image_url': f"{image_path}"}
+    context = {'image_url': f"{pic_url}"}
     return render(request, 'my_template.html', context)
 
                       
