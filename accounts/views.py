@@ -17,6 +17,7 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 import numpy as np
 from github import Github
+from telusko.my_settings import STATIC_ROOT
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 g = Github("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")
@@ -32,24 +33,18 @@ def matplotlibit(request):
     plt.title('Bar chart of random data')
     plt.xlabel('Category')
     plt.ylabel('Count')
-    '''
-    # Save the chart to static/images
-    image_name = 'bar_chart.png'
+    
+    # Save the chart as an image file
+    image_name = f'Image{str(datetime.now())}.jpg'
     image_path = os.path.join(settings.STATIC_ROOT, 'images', image_name)
     plt.savefig(image_path)
-    '''
-    image_name = f'Image{str(datetime.now())}.jpg'
-    pic_url = f'Finalmage/{image_name}'
-    final_image = Image.open(plt)
-    temp_image = final_image 
-    buf = BytesIO()
-    temp_image.save(buf, 'jpeg')
-    buf.seek(0)
-    image_bytes = buf.read()
-    buf.close()
-    string = base64.b64encode(image_bytes)
-    pic_url = f'FinalImage/Image{str(datetime.now())}.jpg'
-    repo.create_file(pic_url, "commit", base64.b64decode(string))
+    
+    # Open the image file, encode it as base64, and create a new file in a GitHub repo
+    with open(image_path, 'rb') as f:
+        image_bytes = f.read()
+        string = base64.b64encode(image_bytes)
+        pic_url = f'FinalImage/{image_name}'
+        repo.create_file(pic_url, "commit", base64.b64decode(string))
 
     # Render the template with the image URL
     context = {'image_url': f"{pic_url}"}
