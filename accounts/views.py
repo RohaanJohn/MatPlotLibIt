@@ -19,7 +19,7 @@ import numpy as np
 from github import Github
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-g = Github("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")
+g = Github("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")
 repo = g.get_repo("RohaanJohn/MatPlotLibIt")
 
 # Create your views here.
