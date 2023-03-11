@@ -20,7 +20,7 @@ from github import Github
 import telusko
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-g = Github("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")
+g = Github(<your api key>)
 repo = g.get_repo("RohaanJohn/MatPlotLibIt")
 
 # Create your views here.
