@@ -18,7 +18,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from github import Github
 import telusko
-from telusko.settings import STATIC_ROOT
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 g = Github("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")
@@ -37,7 +36,12 @@ def matplotlibit(request):
     
     # Save the chart as an image file
     image_name = f'Image{str(datetime.now())}.jpg'
-    image_path = os.path.join(telusko.settings.STATIC_ROOT, 'images', image_name)
+    STATIC_URL = '/static/'
+    STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+    ]
+    STATIC_ROOT = os.path.join(BASE_DIR, 'assests')
+    image_path = os.path.join(STATIC_ROOT, 'images', image_name)
     plt.savefig(image_path)
     
     # Open the image file, encode it as base64, and create a new file in a GitHub repo
