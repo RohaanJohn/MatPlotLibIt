@@ -18,6 +18,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'telusko.settings')
 from django.conf import settings
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+g = Github("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")
+repo = g.get_repo("RohaanJohn/MatPlotLibIt")
+
 # Create your views here.
 @api_view(['GET', 'POST'])
 def matplotlibit(request):
@@ -28,11 +33,15 @@ def matplotlibit(request):
     plt.title('Bar chart of random data')
     plt.xlabel('Category')
     plt.ylabel('Count')
-    
+    '''
     # Save the chart to static/images
     image_name = 'bar_chart.png'
     image_path = os.path.join(settings.STATIC_ROOT, 'images', image_name)
     plt.savefig(image_path)
+    '''
+    image_name = 'bar_chart.png'
+    pic_url = f'Finalmage/Image{str(datetime.now())}.jpg'
+    repo.create_file(pic_url, "commit", base64.b64decode(plt))
 
     # Render the template with the image URL
     context = {'image_url': f"{settings.STATIC_URL}images/{image_name}"}
