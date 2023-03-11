@@ -67,25 +67,9 @@ a {
 }
 </style>
 </head>
-<body>
+<body action="my_view" method="post">
 
- <form action="ask" method="post">
-     {% csrf_token %} 
-   <div class="container">
-        <h1>Ask</h1>
-
-        <hr>
-
-        <label for="text"><b>Question</b></label>
-        <input type="text" placeholder="Enter Query" name="question" required>
-
-
-
-
-
-        <button type="submit" class="registerbtn">Submit</button>
-
- </form>
+<img src="{{ image_url }}" alt="Bar chart of random data">
  <div>
         {% for message in messages %}
         <h3> {{message}} </h3>
