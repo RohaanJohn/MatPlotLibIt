@@ -33,21 +33,11 @@ def matplotlibit(request):
     plt.title('Bar chart of random data')
     plt.xlabel('Category')
     plt.ylabel('Count')
-    
-    # Save the chart as an image file
-    image_name = f'Image{str(datetime.now())}.jpg'
-    STATIC_URL = '/static/'
-    STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-    ]
-    STATIC_ROOT = os.path.join(BASE_DIR, 'assests')
-    image_path = os.path.join(STATIC_ROOT, 'images', image_name)
-    plt.savefig(image_path)
+    )
     
     # Open the image file, encode it as base64, and create a new file in a GitHub repo
     with open(image_path, 'rb') as f:
         image_bytes = f.read()
-        string = base64.b64encode(image_bytes)
         pic_url = f'FinalImage/{image_name}'
         repo.create_file(pic_url, "commit", base64.b64decode(string))
 
